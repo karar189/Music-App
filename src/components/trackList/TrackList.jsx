@@ -1,18 +1,50 @@
 import React from "react";
-import { styled } from "@mui/material/styles";
+import { Grid } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
+import Box from "@mui/material/Box";
+import List from "@mui/material/List";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import Divider from "@mui/material/Divider";
+import InboxIcon from "@mui/icons-material/Inbox";
+import DraftsIcon from "@mui/icons-material/Drafts";
 
 const TrackList = () => {
   return (
     <>
-      <IconButton aria-label="loop">
-        <CloseIcon fontSize="medium" />
-      </IconButton>
+      <Box>
+        <Divider />
+        <Grid>
+          <Grid item xs={2}>
+            hello
+          </Grid>
+          <Grid item xs={8}>
+            <IconButton aria-label="close">
+              <CloseIcon fontSize="medium" />
+            </IconButton>
+          </Grid>
+        </Grid>
+
+        <Box sx={{ width: "100%", maxWidth: 350, bgcolor: "background.paper" }}>
+          <List aria-label="tracklist">
+            <ListItemButton>
+              <ListItemText primary="Inbox" />
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+            </ListItemButton>
+            <ListItemButton>
+              <ListItemText primary="Drafts" />
+              <ListItemIcon>
+                <DraftsIcon />
+              </ListItemIcon>
+            </ListItemButton>
+          </List>
+        </Box>
+        <Divider />
+      </Box>
     </>
   );
 };
