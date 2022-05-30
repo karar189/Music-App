@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+import TrackList from "../trackList/TrackList";
 
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
+import { Grid, Modal, Container } from "@mui/material";
 
 import IconButton from "@mui/material/IconButton";
 import PauseRounded from "@mui/icons-material/PauseRounded";
@@ -14,7 +14,9 @@ import ShuffleIcon from "@mui/icons-material/Shuffle";
 
 const PlayFunction = () => {
   const [paused, setPaused] = React.useState(false);
-
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   return (
     <>
       <Grid>
@@ -40,8 +42,16 @@ const PlayFunction = () => {
         </IconButton>
 
         <IconButton aria-label="list">
-          <QueueMusicOutlinedIcon fontSize="queue list" />
+          <QueueMusicOutlinedIcon onClick={handleOpen} fontSize="queue list" />
         </IconButton>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <TrackList />
+        </Modal>
         <IconButton aria-label="shuffle">
           <ShuffleIcon fontSize="medium" />
         </IconButton>

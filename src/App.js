@@ -5,7 +5,6 @@ function App() {
   return (
     <>
       <MusicCard></MusicCard>
-      <TrackList></TrackList>
     </>
   );
 }
