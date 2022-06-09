@@ -12,8 +12,8 @@ import LoopIcon from "@mui/icons-material/Loop";
 import QueueMusicOutlinedIcon from "@mui/icons-material/QueueMusicOutlined";
 import ShuffleIcon from "@mui/icons-material/Shuffle";
 
-const PlayFunction = () => {
-  const [paused, setPaused] = React.useState(false);
+const PlayFunction = (props) => {
+  const [paused, setPaused] = React.useState(true);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -25,7 +25,10 @@ const PlayFunction = () => {
         </IconButton>
 
         <IconButton aria-label="previous song">
-          <FastRewindRounded fontSize="large" />
+          <FastRewindRounded
+            onClick={() => props.SkipSong(false)}
+            fontSize="large"
+          />
         </IconButton>
         <IconButton
           aria-label={paused ? "play" : "pause"}
@@ -34,11 +37,17 @@ const PlayFunction = () => {
           {paused ? (
             <PlayArrowRounded sx={{ fontSize: "3rem" }} />
           ) : (
-            <PauseRounded sx={{ fontSize: "3rem" }} />
+            <PauseRounded
+              onClick={() => props.setIsPlaying(!props.isPlaying)}
+              sx={{ fontSize: "3rem" }}
+            />
           )}
         </IconButton>
         <IconButton aria-label="next song">
-          <FastForwardRounded fontSize="large" />
+          <FastForwardRounded
+            onClick={() => props.SkipSong(false)}
+            fontSize="large"
+          />
         </IconButton>
 
         <IconButton aria-label="list">

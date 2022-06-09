@@ -1,15 +1,11 @@
 import React from "react";
 import "./musicCard.css";
 import { styled } from "@mui/material/styles";
+import { useState, useEffect, useRef } from "react";
+import { Container, Grid, Paper, Typography, ButtonBase } from "@mui/material";
 
 import ProgressBar from "../progressBar/ProgressBar";
 import PlayFunction from "../playFunctions/PlayFunction";
-
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
-import ButtonBase from "@mui/material/ButtonBase";
 
 const Img = styled("img")({
   margin: "auto",
@@ -18,7 +14,40 @@ const Img = styled("img")({
   maxHeight: "100%",
 });
 
-const MusicCard = () => {
+const MusicCard = (props) => {
+  const audioElement = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  useEffect(() => {
+    if (isPlaying) {
+      audioElement.current.play();
+    } else {
+      audioElement.current.pause();
+    }
+  });
+  // audioElement.current.play();
+  // audioElement.current.pause();
+  const SkipSong = (forwards = true) => {
+    if (forwards) {
+      props.setCurrentSongIndex(() => {
+        let temp = props.currentSongIndex;
+        temp++;
+        if (temp > props.songs.length - 1) {
+          temp = 0;
+        }
+        return temp;
+      });
+    } else {
+      props.setCurrentSongIndex(() => {
+        let temp = props.currentSongIndex;
+        temp--;
+        if (temp < 0) {
+          temp = props.songs.length - 1;
+        }
+        return temp;
+      });
+    }
+  };
+
   return (
     <>
       <Container>
@@ -35,17 +64,20 @@ const MusicCard = () => {
           <Grid container spacing={2}>
             <Grid item>
               <ButtonBase sx={{ width: 128, height: 128 }}>
-                <Img alt="musicCover" src="" />
+                <Img
+                  alt="musicCover"
+                  src={props.songs[props.currentSongIndex].img_src}
+                />
               </ButtonBase>
             </Grid>
             <Grid item xs={12} sm container>
               <Grid item xs container direction="column" spacing={2}>
                 <Grid item xs>
                   <Typography variant="h5" component="h2">
-                    Track 1
+                    {props.songs[props.currentSongIndex].title}
                   </Typography>
                   <Typography variant="subtitle1" component="h2">
-                    Artist
+                    {props.songs[props.currentSongIndex].artist}
                   </Typography>
                 </Grid>
               </Grid>
@@ -53,7 +85,15 @@ const MusicCard = () => {
           </Grid>
           <ProgressBar />
           <Grid>
-            <PlayFunction />
+            <audio
+              src={props.songs[props.currentSongIndex].src}
+              ref={audioElement}
+            ></audio>
+            <PlayFunction
+              isPlaying={isPlaying}
+              setIsPlaying={setIsPlaying}
+              SkipSong={SkipSong}
+            />
           </Grid>
         </Paper>
       </Container>
