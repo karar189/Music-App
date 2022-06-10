@@ -3,7 +3,12 @@ import "./App.css";
 import { useState, useEffect } from "react";
 
 import MusicCard from "./components/musicCard/MusicCard";
-import cat from "./images/kitten.png";
+
+import img1 from "./images/levi.png";
+import img2 from "./images/eyes.jpg";
+import img3 from "./images/theseDays.jpg";
+import img4 from "./images/sunroof.png";
+
 import song1 from "./music/song1.mp3";
 import song2 from "./music/song2.mp3";
 import song3 from "./music/song3.mp3";
@@ -13,26 +18,26 @@ function App() {
   const [songs] = useState([
     {
       title: "Levitating",
-      artist: "Machine Gun Kelly",
-      img_src: cat,
+      artist: "Dua Lipa",
+      img_src: img1,
       src: song1,
     },
     {
-      title: "Song2",
-      artist: "Artist2",
-      img_src: "./images/song-2.jpg",
+      title: "Eyes off You-Cover",
+      artist: "Concepcion & Yanna",
+      img_src: img2,
       src: song2,
     },
     {
-      title: "Song3",
-      artist: "Artist3",
-      img_src: "./images/song-3.jpg",
+      title: "These Days",
+      artist: "Rudimental",
+      img_src: img3,
       src: song3,
     },
     {
-      title: "Song3",
-      artist: "Artist3",
-      img_src: "./images/song-3.jpg",
+      title: "Sunroof",
+      artist: "Nicky Youre",
+      img_src: img4,
       src: song4,
     },
   ]);
