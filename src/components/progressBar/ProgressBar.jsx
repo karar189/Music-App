@@ -4,7 +4,13 @@ import Slider from "@mui/material/Slider";
 const ProgressBar = () => {
   return (
     <>
-      <Slider aria-label="Temperature" defaultValue={30} color="secondary" />
+      <Slider
+        aria-label="Temperature"
+        defaultValue={0}
+        color="secondary"
+        min={0}
+        max={100}
+      />
     </>
   );
 };
