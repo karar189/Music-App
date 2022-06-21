@@ -6,8 +6,6 @@ import { FaPlay } from "react-icons/fa";
 import { FaPause } from "react-icons/fa";
 import { FaForward } from "react-icons/fa";
 import { FaBackward } from "react-icons/fa";
-import { IconButton } from "@mui/material";
-import FastRewindRounded from "@mui/icons-material/FastRewindRounded";
 
 const AudioPlayer = (props) => {
   // state
@@ -100,39 +98,13 @@ const AudioPlayer = (props) => {
       });
     }
   };
+
   return (
-    <div className={styles.audioPlayer}>
+    <div>
       <audio
         src={props.songs[props.currentSongIndex].src}
         ref={audioPlayer}
       ></audio>
-
-      <button
-        className="skip-btn"
-        onClick={() => {
-          SkipSong(true);
-        }}
-      >
-        <FaBackward />
-      </button>
-      <button className={styles.forwardBackward} onClick={backThirty}>
-        <BsArrowLeftShort /> 30
-      </button>
-      <button onClick={togglePlayPause} className={styles.playPause}>
-        {isPlaying ? <FaPause /> : <FaPlay className={styles.play} />}
-      </button>
-      <button className={styles.forwardBackward} onClick={forwardThirty}>
-        30 <BsArrowRightShort />
-      </button>
-
-      <button
-        className="skip-btn"
-        onClick={() => {
-          SkipSong(true);
-        }}
-      >
-        <FaForward />
-      </button>
 
       {/* current time */}
       <div className={styles.currentTime}>{calculateTime(currentTime)}</div>
@@ -152,6 +124,33 @@ const AudioPlayer = (props) => {
       <div className={styles.duration}>
         {duration && !isNaN(duration) && calculateTime(duration)}
       </div>
+
+      {/* button player functions */}
+      <button
+        className="skip-btn"
+        onClick={() => {
+          SkipSong(true);
+        }}
+      >
+        <FaBackward />
+      </button>
+      <button onClick={backThirty}>
+        <BsArrowLeftShort /> 30
+      </button>
+      <button onClick={togglePlayPause}>
+        {isPlaying ? <FaPause /> : <FaPlay className={styles.play} />}
+      </button>
+      <button onClick={forwardThirty}>
+        30 <BsArrowRightShort />
+      </button>
+
+      <button
+        onClick={() => {
+          SkipSong(true);
+        }}
+      >
+        <FaForward />
+      </button>
     </div>
   );
 };
