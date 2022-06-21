@@ -1,8 +1,7 @@
 import "./App.css";
+import AudioPlayer from "./components/AudioPlayer";
 
 import { useState, useEffect } from "react";
-
-import MusicCard from "./components/musicCard/MusicCard";
 
 import img1 from "./images/levi.png";
 import img2 from "./images/eyes.jpg";
@@ -41,6 +40,7 @@ function App() {
       src: song4,
     },
   ]);
+
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [nextSongIndex, setNextSongIndex] = useState(currentSongIndex + 1);
   useEffect(() => {
@@ -50,14 +50,17 @@ function App() {
       setNextSongIndex(currentSongIndex + 1);
     }
   }, [currentSongIndex]);
+
   return (
     <>
-      <MusicCard
-        currentSongIndex={currentSongIndex}
-        setCurrentSongIndex={setCurrentSongIndex}
-        nextSongIndex={nextSongIndex}
-        songs={songs}
-      />
+      {
+        <AudioPlayer
+          songs={songs}
+          currentSongIndex={currentSongIndex}
+          setCurrentSongIndex={setCurrentSongIndex}
+          nextSongIndex={nextSongIndex}
+        />
+      }
     </>
   );
 }
