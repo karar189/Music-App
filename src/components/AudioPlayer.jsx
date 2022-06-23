@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "../styles/AudioPlayer.module.css";
 
-import { Container, Slider, Box } from "@mui/material";
+import { Container, Slider, Box, Grid } from "@mui/material";
 import FastRewindIcon from "@mui/icons-material/FastRewind";
 import FastForwardIcon from "@mui/icons-material/FastForward";
 import Forward30Icon from "@mui/icons-material/Forward30";
@@ -116,7 +116,7 @@ const AudioPlayer = (props) => {
   ];
   return (
     <>
-      <CoverImage />
+      <CoverImage props={props} />
       <Container>
         <audio
           src={props.songs[props.currentSongIndex].src}
@@ -138,43 +138,51 @@ const AudioPlayer = (props) => {
             max={100}
             step="1"
             marks={mark}
+            color="secondary"
           />
         </Container>
-        <Container>
+        <Container maxWidth="xs">
           {/* duration */}
-          <IconButton>
-            {" "}
-            <FastRewindIcon
-              onClick={() => {
-                SkipSong(true);
-              }}
-              fontSize="large"
-            />
-          </IconButton>
-          <IconButton>
-            <Replay30Icon onClick={backThirty} fontSize="large" />
-          </IconButton>
+          <Grid
+            container
+            spacing={2}
+            alignItems="center"
+            justifyContent="center"
+          >
+            <IconButton>
+              {" "}
+              <FastRewindIcon
+                onClick={() => {
+                  SkipSong(true);
+                }}
+                fontSize="large"
+              />
+            </IconButton>
+            <IconButton>
+              <Replay30Icon onClick={backThirty} fontSize="large" />
+            </IconButton>
 
-          <IconButton onClick={togglePlayPause}>
-            {isPlaying ? (
-              <PauseRounded fontSize="large" />
-            ) : (
-              <PlayArrowRoundedIcon fontSize="large" />
-            )}
-          </IconButton>
+            <IconButton onClick={togglePlayPause}>
+              {isPlaying ? (
+                <PauseRounded fontSize="large" />
+              ) : (
+                <PlayArrowRoundedIcon fontSize="large" />
+              )}
+            </IconButton>
 
-          <IconButton>
-            <Forward30Icon onClick={forwardThirty} fontSize="large" />
-          </IconButton>
+            <IconButton>
+              <Forward30Icon onClick={forwardThirty} fontSize="large" />
+            </IconButton>
 
-          <IconButton>
-            <FastForwardIcon
-              onClick={() => {
-                SkipSong(true);
-              }}
-              fontSize="large"
-            />
-          </IconButton>
+            <IconButton>
+              <FastForwardIcon
+                onClick={() => {
+                  SkipSong(true);
+                }}
+                fontSize="large"
+              />
+            </IconButton>
+          </Grid>
         </Container>
       </Container>
     </>

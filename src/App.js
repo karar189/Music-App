@@ -56,8 +56,15 @@ function App() {
   return (
     <>
       {
-        <Container>
-          <Paper elevation={18}>
+        <Container sx={{ p: 20 }}>
+          <Paper
+            elevation={18}
+            sx={{ p: 4 }}
+            style={{
+              background:
+                "linear-gradient(to bottom, #ffafbd 10%, #ffc3a0 100%)",
+            }}
+          >
             <AudioPlayer
               songs={songs}
               currentSongIndex={currentSongIndex}

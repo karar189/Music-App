@@ -10,7 +10,7 @@ const Img = styled("img")({
   maxHeight: "100%",
 });
 
-const CoverImage = (props) => {
+const CoverImage = ({ props }) => {
   return (
     <>
       <Container>
@@ -19,7 +19,7 @@ const CoverImage = (props) => {
             <ButtonBase sx={{ width: 128, height: 128 }}>
               <Img
                 alt="musicCover"
-                // src={props.songs[props.currentSongIndex].img_src}
+                src={props.songs[props.currentSongIndex].img_src}
               />
             </ButtonBase>
           </Grid>
@@ -27,12 +27,10 @@ const CoverImage = (props) => {
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
                 <Typography variant="h5" component="h2">
-                  {/* {props.songs[props.currentSongIndex].title} */}
-                  Song Title
+                  {props.songs[props.currentSongIndex].title}
                 </Typography>
                 <Typography variant="subtitle1" component="h2">
-                  {/* {props.songs[props.currentSongIndex].artist} */}
-                  Artist Name
+                  {props.songs[props.currentSongIndex].artist}
                 </Typography>
               </Grid>
             </Grid>
