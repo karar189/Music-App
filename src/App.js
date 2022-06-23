@@ -1,8 +1,9 @@
 import "./App.css";
+import AudioPlayer from "./components/AudioPlayer";
 
 import { useState, useEffect } from "react";
 
-import MusicCard from "./components/musicCard/MusicCard";
+import { Paper, Container } from "@mui/material";
 
 import img1 from "./images/levi.png";
 import img2 from "./images/eyes.jpg";
@@ -41,6 +42,7 @@ function App() {
       src: song4,
     },
   ]);
+
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [nextSongIndex, setNextSongIndex] = useState(currentSongIndex + 1);
   useEffect(() => {
@@ -50,14 +52,28 @@ function App() {
       setNextSongIndex(currentSongIndex + 1);
     }
   }, [currentSongIndex]);
+
   return (
     <>
-      <MusicCard
-        currentSongIndex={currentSongIndex}
-        setCurrentSongIndex={setCurrentSongIndex}
-        nextSongIndex={nextSongIndex}
-        songs={songs}
-      />
+      {
+        <Container sx={{ p: 20 }}>
+          <Paper
+            elevation={18}
+            sx={{ p: 4 }}
+            style={{
+              background:
+                "linear-gradient(to bottom, #ffafbd 10%, #ffc3a0 100%)",
+            }}
+          >
+            <AudioPlayer
+              songs={songs}
+              currentSongIndex={currentSongIndex}
+              setCurrentSongIndex={setCurrentSongIndex}
+              nextSongIndex={nextSongIndex}
+            />
+          </Paper>
+        </Container>
+      }
     </>
   );
 }
