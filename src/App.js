@@ -3,6 +3,8 @@ import AudioPlayer from "./components/AudioPlayer";
 
 import { useState, useEffect } from "react";
 
+import { Paper, Container } from "@mui/material";
+
 import img1 from "./images/levi.png";
 import img2 from "./images/eyes.jpg";
 import img3 from "./images/theseDays.jpg";
@@ -54,12 +56,16 @@ function App() {
   return (
     <>
       {
-        <AudioPlayer
-          songs={songs}
-          currentSongIndex={currentSongIndex}
-          setCurrentSongIndex={setCurrentSongIndex}
-          nextSongIndex={nextSongIndex}
-        />
+        <Container>
+          <Paper elevation={18}>
+            <AudioPlayer
+              songs={songs}
+              currentSongIndex={currentSongIndex}
+              setCurrentSongIndex={setCurrentSongIndex}
+              nextSongIndex={nextSongIndex}
+            />
+          </Paper>
+        </Container>
       }
     </>
   );
