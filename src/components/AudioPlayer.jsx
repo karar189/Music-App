@@ -68,11 +68,18 @@ const AudioPlayer = (props) => {
     changePlayerCurrentTime();
   };
 
+  //to add smooth transition to the progress bar
   const changePlayerCurrentTime = () => {
+    // progressBar.current.style.setProperty(
+    //   "--seek-before-width",
+    //   `${(progressBar.current.value / duration) * 100}%`
+
+    // );
     progressBar.current.style.setProperty(
       "--seek-before-width",
-      `${(progressBar.current.value / duration) * 100}%`
+      `${progressBar.current.value / duration}%`
     );
+
     setCurrentTime(progressBar.current.value);
   };
 
